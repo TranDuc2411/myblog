@@ -3,8 +3,10 @@ require('dotenv').config()
 const app = express()
 const port = process.env.SERVER_PORT
 
+//connect DB
+const db = require('./src/config/connect_db')
+
 // set view engine
-// const pug = require('pug');
 const path = require('path');
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'src', 'views'));
