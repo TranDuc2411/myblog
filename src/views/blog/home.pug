@@ -1,0 +1,251 @@
+doctype html
+//
+  Future Imperfect by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+head
+  title Tran Ngoc Minh Duc
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, user-scalable=no')
+  style 
+    include ./assets/css/main.css
+// Wrapper
+#wrapper
+  // Header
+  header#header
+    h1
+      a(href='index.html') Trần Ngọc Minh Đức
+
+    nav.links
+      ul
+        li
+          a(href='#') Lorem
+        li
+          a(href='#') Ipsum
+        li
+          a(href='#') Feugiat
+        li
+          a(href='#') Tempus
+        li
+          a(href='#') Adipiscing
+    nav.main
+      ul
+        li.search
+          a.fa-search(href='#search') Search
+          form#search(method='get' action='#')
+            input(type='text' name='query' placeholder='Search')
+        li.menu
+          a.fa-bars(href='#menu') Menu
+  // Menu
+  section#menu
+    // Search
+    section
+      form.search(method='get' action='#')
+        input(type='text' name='query' placeholder='Search')
+    // Links
+    section
+      ul.links
+        li
+          a(href='#')
+            h3 Lorem ipsum
+            p Feugiat tempus veroeros dolor
+    // Actions
+    section
+      ul.actions.stacked
+        li
+          a.button.large.fit(href='#') Log In
+  // Main
+  #main
+    // Post
+    article.post
+      header
+        .title
+          h2
+            a(href='/1') #{Posts[0].title}
+          p OmegaSS là kênh chuyên làm các nội dung về thể thao, life style ...
+        .meta
+          time.published(datetime='2015-11-01') November 1, 2015
+          a.author(href='#')
+            span.name Tran Ngoc Minh Duc
+            img(src='https://cdn.thehinh.com/2016/11/Calisthenics-la-gi.jpg' alt='')
+      a.image.featured(href='/1')
+        img(src='https://cdn.thehinh.com/2016/11/Calisthenics-la-gi.jpg' alt='')
+      p
+        | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt
+        | sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
+      footer
+        ul.actions
+          li
+            a.button.large(href='/1') Continue Reading
+        ul.stats
+          li
+            a(href='#') General
+          li
+            a.icon.solid.fa-heart(href='#') 28
+          li
+            a.icon.solid.fa-comment(href='#') 128
+    //- // Post
+    //- article.post
+    //-   header
+    //-     .title
+    //-       h2
+    //-         a(href='/1') Ultricies sed magna euismod enim vitae gravida
+    //-       p Lorem ipsum dolor amet nullam consequat etiam feugiat
+    //-     .meta
+    //-       time.published(datetime='2015-10-25') October 25, 2015
+    //-       a.author(href='#')
+    //-         span.name Jane Doe
+    //-         img(src='./images/avatar.jpg' alt='')
+    //-   a.image.featured(href='/1')
+    //-     img(src='images/pic02.jpg' alt='')
+    //-   p
+    //-     | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.
+    //-   footer
+    //-     ul.actions
+    //-       li
+    //-         a.button.large(href='/1') Continue Reading
+    //-     ul.stats
+    //-       li
+    //-         a(href='#') General
+    //-       li
+    //-         a.icon.solid.fa-heart(href='#') 28
+    //-       li
+    //-         a.icon.solid.fa-comment(href='#') 128
+    //- // Post
+    //- article.post
+    //-   header
+    //-     .title
+    //-       h2
+    //-         a(href='/1') Euismod et accumsan
+    //-       p Lorem ipsum dolor amet nullam consequat etiam feugiat
+    //-     .meta
+    //-       time.published(datetime='2015-10-22') October 22, 2015
+    //-       a.author(href='#')
+    //-         span.name Jane Doe
+    //-         img(src='images/avatar.jpg' alt='')
+    //-   a.image.featured(href='/1')
+    //-     img(src='images/pic03.jpg' alt='')
+    //-   p
+    //-     | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt
+    //-     | sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Cras vehicula tellus eu ligula viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus ligula.
+    //-   footer
+    //-     ul.actions
+    //-       li
+    //-         a.button.large(href='/1') Continue Reading
+    //-     ul.stats
+    //-       li
+    //-         a(href='#') General
+    //-       li
+    //-         a.icon.solid.fa-heart(href='#') 28
+    //-       li
+    //-         a.icon.solid.fa-comment(href='#') 128
+    ul.actions.pagination
+      li
+        a.disabled.button.large.previous(href='') Previous Page
+      li
+        a.button.large.next(href='#') Next Page
+  // Sidebar
+  section#sidebar
+    // Intro
+    section#intro
+      a.logo(href='#')
+        img(src='https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/358142089_3482952055319155_957095269727703224_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeEUNp-UCfvZKyWd8PFJGb13sc9y4r0qmamxz3LivSqZqXAmuAC-eBaOsrvLlKDcvKI6b7wyIWgAXmsJ3TaG2MG-&_nc_ohc=r0-9qlFDSgUAX-Q0wux&_nc_ht=scontent.fhan2-3.fna&oh=00_AfBO-NKNHTymYvnFsuTFOEe5-axts-Kc4gPo3tY2uQTWyw&oe=659553E6' alt='logo')
+      header
+        h2 Trần Ngọc Minh Đức
+        p
+          | "when you think about some thing, then you get it !!!" 
+    // Mini Posts
+    section
+      .mini-posts
+        // Mini Post
+        each post in Posts
+          article.mini-post
+            header
+              h3
+                a(href='/1') #{post.title}
+              time.published(datetime='2015-10-20') October 20, 2015
+              a.author(href='#')
+                img(src='images/avatar.jpg' alt='')
+            a.image(href='/1')
+              img(src='images/pic04.jpg' alt='')
+    // Posts List
+    section
+      ul.posts
+        li
+          article
+            header
+              h3
+                a(href='/1') Lorem ipsum fermentum ut nisl vitae
+              time.published(datetime='2015-10-20') October 20, 2015
+            a.image(href='/1')
+              img(src='images/pic08.jpg' alt='')
+        li
+          article
+            header
+              h3
+                a(href='/1') Convallis maximus nisl mattis nunc id lorem
+              time.published(datetime='2015-10-15') October 15, 2015
+            a.image(href='/1')
+              img(src='images/pic09.jpg' alt='')
+        li
+          article
+            header
+              h3
+                a(href='/1') Euismod amet placerat vivamus porttitor
+              time.published(datetime='2015-10-10') October 10, 2015
+            a.image(href='/1')
+              img(src='images/pic10.jpg' alt='')
+        li
+          article
+            header
+              h3
+                a(href='/1') Magna enim accumsan tortor cursus ultricies
+              time.published(datetime='2015-10-08') October 8, 2015
+            a.image(href='/1')
+              img(src='images/pic11.jpg' alt='')
+        li
+          article
+            header
+              h3
+                a(href='/1') Congue ullam corper lorem ipsum dolor
+              time.published(datetime='2015-10-06') October 7, 2015
+            a.image(href='/1')
+              img(src='images/pic12.jpg' alt='')
+    // About
+    section.blurb
+      h2 About
+      p
+        | Chào các bạn mình là Đức, và các bạn đang thấy một phần tuổi trẻ của mình !
+      ul.actions
+        li
+          a.button(href='#') Learn More
+    // Footer
+    section#footer
+      ul.icons
+        li
+          a.icon.brands.fa-twitter(href='#')
+            span.label Twitter
+        li
+          a.icon.brands.fa-facebook-f(href='#')
+            span.label Facebook
+        li
+          a.icon.brands.fa-instagram(href='#')
+            span.label Instagram
+        li
+          a.icon.solid.fa-rss(href='#')
+            span.label RSS
+        li
+          a.icon.solid.fa-envelope(href='#')
+            span.label Email
+      p.copyright
+        | &copy; Untitled. Design: 
+        a(href='http://html5up.net') HTML5 UP
+        | . Images: 
+        a(href='http://unsplash.com') Unsplash
+        | .
+// Scripts
+script(src='./assets/js/jquery.min.js')
+script(src='./assets/js/browser.min.js')
+script(src='./assets/js/breakpoints.min.js')
+script(src='./assets/js/util.js')
+script(src='./assets/js/main.js')

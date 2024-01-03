@@ -1,0 +1,123 @@
+doctype html
+//
+  Future Imperfect by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+head
+  title Single - Future Imperfect by HTML5 UP
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, user-scalable=no')
+  style 
+    include ./assets/css/main.css
+// Wrapper
+#wrapper
+  // Header
+  header#header
+    h1
+      a(href='/home') Trần Ngọc Minh Đức
+    nav.links
+      ul
+        li
+          a(href='#') Lorem
+        li
+          a(href='#') Ipsum
+        li
+          a(href='#') Feugiat
+        li
+          a(href='#') Tempus
+        li
+          a(href='#') Adipiscing
+    nav.main
+      ul
+        li.search
+          a.fa-search(href='#search') Search
+          form#search(method='get' action='#')
+            input(type='text' name='query' placeholder='Search')
+        li.menu
+          a.fa-bars(href='#menu') Menu
+  // Menu
+  section#menu
+    // Search
+    section
+      form.search(method='get' action='#')
+        input(type='text' name='query' placeholder='Search')
+    // Links
+    section
+      ul.links
+        li
+          a(href='#')
+            h3 Lorem ipsum
+            p Feugiat tempus veroeros dolor
+        li
+          a(href='#')
+            h3 Dolor sit amet
+            p Sed vitae justo condimentum
+        li
+          a(href='#')
+            h3 Feugiat veroeros
+            p Phasellus sed ultricies mi congue
+        li
+          a(href='#')
+            h3 Etiam sed consequat
+            p Porta lectus amet ultricies
+    // Actions
+    section
+      ul.actions.stacked
+        li
+          a.button.large.fit(href='#') Log In
+  // Main
+  #main
+    // Post
+    article.post
+      header
+        .title
+          h2
+            a(href='#') #{PostDetail.title}
+          p lời dẫn - chưa có thuộc tính trong DB
+        .meta
+          time.published(datetime='2015-11-01') #{PostDetail.createdAt}
+          a.author(href='#')
+            span.name #{PostDetail.author}
+            img(src='images/avatar.jpg' alt='')
+      span.image.featured
+        img(src=`${PostDetail.urlThumnail}` alt='')
+      p
+        div!= PostDetail.content
+      footer
+        ul.stats
+          li
+            a(href='#') General
+          li
+            a.icon.solid.fa-heart(href='#') 28
+          li
+            a.icon.solid.fa-comment(href='#') 128
+  // Footer
+  section#footer
+    ul.icons
+      li
+        a.icon.brands.fa-twitter(href='#')
+          span.label Twitter
+      li
+        a.icon.brands.fa-facebook-f(href='#')
+          span.label Facebook
+      li
+        a.icon.brands.fa-instagram(href='#')
+          span.label Instagram
+      li
+        a.icon.solid.fa-rss(href='#')
+          span.label RSS
+      li
+        a.icon.solid.fa-envelope(href='#')
+          span.label Email
+    //- p.copyright
+    //-   | &copy; Untitled. Design: 
+    //-   a(href='http://html5up.net') HTML5 UP
+    //-   | . Images: 
+    //-   a(href='http://unsplash.com') Unsplash
+    //-   | .
+// Scripts
+script(src='assets/js/jquery.min.js')
+script(src='assets/js/browser.min.js')
+script(src='assets/js/breakpoints.min.js')
+script(src='assets/js/util.js')
+script(src='assets/js/main.js')

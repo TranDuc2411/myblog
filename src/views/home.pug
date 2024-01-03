@@ -6,4 +6,8 @@ html(lang="en")
         title Home
     body 
         h1 Home Page test volume oke
-        h2 #{name}
+        each post in Posts 
+            .post
+            h2= post.title
+            p Written by #{post.author} on #{post.createdAt}
+            p= post.content

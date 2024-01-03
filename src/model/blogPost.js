@@ -5,19 +5,24 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     title: {
         type: String,
-        required: true,
+        default: null,
     },
     content: {
         type: String,
-        required: true,
+        default: null,
+    },
+    urlThumnail: {
+        type: String,
+        default: null,
     },
     author: {
         type: String,
-        required: true,
+        default: null,
     },
     createdAt: {
         type: Date,
-        default: Date.now,
+        // default: Date.now,
+        default: () => new Date().toLocaleDateString("en-US")
     },
 });
 
