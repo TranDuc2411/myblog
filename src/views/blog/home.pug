@@ -14,20 +14,33 @@ head
   // Header
   header#header
     h1
-      a(href='index.html') Trần Ngọc Minh Đức
-
+      a(href='index.html') Trần Ngọc Minh Đức - 2024
     nav.links
       ul
         li
-          a(href='#') Lorem
+          a(href='#') January
         li
-          a(href='#') Ipsum
+          a(href='#') February
         li
-          a(href='#') Feugiat
+          a(href='#') March
         li
-          a(href='#') Tempus
+          a(href='#') April
         li
-          a(href='#') Adipiscing
+          a(href='#') May
+        li
+          a(href='#') June
+        li
+          a(href='#') July
+        li
+          a(href='#') August
+        li
+          a(href='#') September
+        li
+          a(href='#') October
+        li
+          a(href='#' style="font-weight: bold;") November
+        li
+          a(href='#') December
     nav.main
       ul
         li.search
@@ -61,22 +74,22 @@ head
       header
         .title
           h2
-            a(href='/1') #{Posts[0].title}
-          p OmegaSS là kênh chuyên làm các nội dung về thể thao, life style ...
+            a(href=`/post/detail/${Posts[5]._id}`) #{Posts[5].title}
+          p #{Posts[5].introduction}
         .meta
           time.published(datetime='2015-11-01') November 1, 2015
           a.author(href='#')
             span.name Tran Ngoc Minh Duc
-            img(src='https://cdn.thehinh.com/2016/11/Calisthenics-la-gi.jpg' alt='')
+            img(src='/static/blog/images/logo.jpg' alt='')
       a.image.featured(href='/1')
-        img(src='https://cdn.thehinh.com/2016/11/Calisthenics-la-gi.jpg' alt='')
+        img(src=`${Posts[5].urlThumnail}` alt='')
       p
         | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt
         | sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
       footer
         ul.actions
           li
-            a.button.large(href='/1') Continue Reading
+            a.button.large(href=`/post/detail/${Posts[0]._id}`) Continue Reading
         ul.stats
           li
             a(href='#') General
@@ -84,61 +97,7 @@ head
             a.icon.solid.fa-heart(href='#') 28
           li
             a.icon.solid.fa-comment(href='#') 128
-    //- // Post
-    //- article.post
-    //-   header
-    //-     .title
-    //-       h2
-    //-         a(href='/1') Ultricies sed magna euismod enim vitae gravida
-    //-       p Lorem ipsum dolor amet nullam consequat etiam feugiat
-    //-     .meta
-    //-       time.published(datetime='2015-10-25') October 25, 2015
-    //-       a.author(href='#')
-    //-         span.name Jane Doe
-    //-         img(src='./images/avatar.jpg' alt='')
-    //-   a.image.featured(href='/1')
-    //-     img(src='images/pic02.jpg' alt='')
-    //-   p
-    //-     | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper.
-    //-   footer
-    //-     ul.actions
-    //-       li
-    //-         a.button.large(href='/1') Continue Reading
-    //-     ul.stats
-    //-       li
-    //-         a(href='#') General
-    //-       li
-    //-         a.icon.solid.fa-heart(href='#') 28
-    //-       li
-    //-         a.icon.solid.fa-comment(href='#') 128
-    //- // Post
-    //- article.post
-    //-   header
-    //-     .title
-    //-       h2
-    //-         a(href='/1') Euismod et accumsan
-    //-       p Lorem ipsum dolor amet nullam consequat etiam feugiat
-    //-     .meta
-    //-       time.published(datetime='2015-10-22') October 22, 2015
-    //-       a.author(href='#')
-    //-         span.name Jane Doe
-    //-         img(src='images/avatar.jpg' alt='')
-    //-   a.image.featured(href='/1')
-    //-     img(src='images/pic03.jpg' alt='')
-    //-   p
-    //-     | Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue ullam corper. Praesent tincidunt
-    //-     | sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla. Cras vehicula tellus eu ligula viverra, ac fringilla turpis suscipit. Quisque vestibulum rhoncus ligula.
-    //-   footer
-    //-     ul.actions
-    //-       li
-    //-         a.button.large(href='/1') Continue Reading
-    //-     ul.stats
-    //-       li
-    //-         a(href='#') General
-    //-       li
-    //-         a.icon.solid.fa-heart(href='#') 28
-    //-       li
-    //-         a.icon.solid.fa-comment(href='#') 128
+    
     ul.actions.pagination
       li
         a.disabled.button.large.previous(href='') Previous Page
@@ -149,7 +108,10 @@ head
     // Intro
     section#intro
       a.logo(href='#')
-        img(src='https://scontent.fhan2-3.fna.fbcdn.net/v/t39.30808-6/358142089_3482952055319155_957095269727703224_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_eui2=AeEUNp-UCfvZKyWd8PFJGb13sc9y4r0qmamxz3LivSqZqXAmuAC-eBaOsrvLlKDcvKI6b7wyIWgAXmsJ3TaG2MG-&_nc_ohc=r0-9qlFDSgUAX-Q0wux&_nc_ht=scontent.fhan2-3.fna&oh=00_AfBO-NKNHTymYvnFsuTFOEe5-axts-Kc4gPo3tY2uQTWyw&oe=659553E6' alt='logo')
+        //- img(src='/static/blog/images/avatar.jpg' alt='logo')
+        //- img(src='/static/blog/images/avatar.jpg' alt='logo')
+        img( style='width: 10em; height: 20vh;' src='https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/357575240_3482232015391159_7719320060747414766_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=7aBJNOQaGkMAX_r8hnV&_nc_ht=scontent.fhan19-1.fna&oh=00_AfB6t6sYd9EpGEKm03kVcWwf1WdgdMMWpFBaG1096G_SIA&oe=659E6064' alt='logo')
+        //- img( style='width: 10em; height: 20vh;' src='https://scontent.fhan19-1.fna.fbcdn.net/v/t39.30808-6/363350135_3497124177235276_7613247811719280567_n.jpg?stp=cp6_dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=iV1HxdOWOmgAX_NOCHu&_nc_ht=scontent.fhan19-1.fna&oh=00_AfA-x0HR6039iZuBtPAVD0RqzjDidH8wMLSH6QHnON16Xw&oe=659F1728' alt='logo')
       header
         h2 Trần Ngọc Minh Đức
         p
@@ -158,59 +120,30 @@ head
     section
       .mini-posts
         // Mini Post
-        each post in Posts
+        each post in Posts.slice(1, 3)
           article.mini-post
             header
               h3
-                a(href='/1') #{post.title}
-              time.published(datetime='2015-10-20') October 20, 2015
-              a.author(href='#')
-                img(src='images/avatar.jpg' alt='')
-            a.image(href='/1')
-              img(src='images/pic04.jpg' alt='')
+                a(href=`/post/detail/${post._id}`) #{post.title}
+              time.published(datetime=`${post.createdAt}`) #{post.createdAt}
+              a.author(href=`/post/detail/${post._id}`)
+                img(src='/static/blog/images/avatar.jpg' alt='')
+            a.image(href=`/post/detail/${post._id}`)
+              img(src=`${post.urlThumnail}` alt='')
+    
     // Posts List
     section
-      ul.posts
-        li
-          article
-            header
-              h3
-                a(href='/1') Lorem ipsum fermentum ut nisl vitae
-              time.published(datetime='2015-10-20') October 20, 2015
-            a.image(href='/1')
-              img(src='images/pic08.jpg' alt='')
-        li
-          article
-            header
-              h3
-                a(href='/1') Convallis maximus nisl mattis nunc id lorem
-              time.published(datetime='2015-10-15') October 15, 2015
-            a.image(href='/1')
-              img(src='images/pic09.jpg' alt='')
-        li
-          article
-            header
-              h3
-                a(href='/1') Euismod amet placerat vivamus porttitor
-              time.published(datetime='2015-10-10') October 10, 2015
-            a.image(href='/1')
-              img(src='images/pic10.jpg' alt='')
-        li
-          article
-            header
-              h3
-                a(href='/1') Magna enim accumsan tortor cursus ultricies
-              time.published(datetime='2015-10-08') October 8, 2015
-            a.image(href='/1')
-              img(src='images/pic11.jpg' alt='')
-        li
-          article
-            header
-              h3
-                a(href='/1') Congue ullam corper lorem ipsum dolor
-              time.published(datetime='2015-10-06') October 7, 2015
-            a.image(href='/1')
-              img(src='images/pic12.jpg' alt='')
+      each post in Posts.slice(1, 3)
+        ul.posts
+          li
+            article
+              header
+                h3
+                  a(href=`/post/detail/${post._id}`) #{post.title}
+                time.published(datetime=`${post.createdAt}`) #{post.createdAt}
+              a.image(href='/1')
+                img(src=`${post.urlThumnail}` alt='')
+        
     // About
     section.blurb
       h2 About

@@ -10,22 +10,31 @@ html(lang="en")
     body 
         .container-md 
             h1 Editing
-            form(id="createPostForm" action=`/post/editpost/${PostDetail._id}` method="post")
+            form(id="createPostForm" action=`/post/editpost/${PostDetail._id}` method="post" enctype='multipart/form-data')
                 .mb-3
                   label(for="title" class="form-label") Title
                   input(type="text" class="form-control" id="title" name="title" value =`${PostDetail.title}` required)
+                .mb-3
+                  label(for="introduction" class="form-label") introduction
+                  input(type="text" class="form-control" id="introduction" name="introduction" value =`${PostDetail.introduction}` required)
                 .mb-3
                   label(for="content" class="form-label") Content
                   textarea(class="form-control" id="content" name="content" rows="4" )
                     div!= PostDetail.content
                 .mb-3
                   label(for="urlThumnail" class="form-label") URL Thumbnail
-                  input(type="text" class="form-control" id="urlThumnail" name="urlThumnail" value =`${PostDetail.urlThumnail}` required)
+                  input(type="file" class="form-control" id="urlThumnail" name="urlThumnail" value =`${PostDetail.urlThumnail}`)
+                  img.img-thumbnail(src=`${PostDetail.urlThumnail}`, alt="")
                 .mb-3
                   label(for="author" class="form-label") Author
                   input(type="text" class="form-control" id="author" name="author" value =`${PostDetail.author}` required)
                 .mb-3
+                  label(for="author" class="form-label") Tags
+                  input(type="text" class="form-control" id="tags" name="tags" value =`${PostDetail.tags}` required)
+                .mb-3
                   button(type="submit" class="btn btn-success") Save Post
+                  button(type="submit" class="btn btn-link") 
+                    a(href="/post/manager") Back manager post 
 script.
   document.addEventListener('DOMContentLoaded', function () {
     ClassicEditor

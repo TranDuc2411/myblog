@@ -5,12 +5,13 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title List Post 
+    script(src='./js/post_manager.js')
     script(src='https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js')
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN", crossorigin="anonymous")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js", integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL", crossorigin="anonymous")
   body 
     .container-fluid
-      h1 List Post
+      h1 blog manager
       table.table
         thead
           tr
@@ -36,10 +37,17 @@ html(lang="en")
                   svg.bi.bi-trash3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
                     path(d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5')
 
+    
       //- Button to toggle create post form visibility
-      button(id="createPostButton" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPostModal") New Post       
-        svg.bi.bi-plus-lg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-          path(fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2')
+      .btn-group
+        button(id="createPostButton" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPostModal") New Post       
+          svg.bi.bi-plus-lg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+            path(fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2')
+        a(class="btn btn-secondary" href="/home" ) View blog 
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+          </svg>
 
       // Create new post form using Modal
       .modal.fade#createPostModal(tabindex="-1", role="dialog", aria-labelledby="createPostModalLabel", aria-hidden="true")
@@ -49,75 +57,154 @@ html(lang="en")
               h5#createPostModalLabel.modal-title Create New Post
               button(type="button", class="btn-close", data-bs-dismiss="modal", aria-label="Close")
             .modal-body
-              form(id="createPostForm" action="http://localhost:7777/post/create" method="post")
+              form(id="createPostForm" action="http://localhost:7777/post/create" method="post" enctype='multipart/form-data')
                 .mb-3
                   label(for="title" class="form-label") Title
                   input(type="text" class="form-control" id="title" name="title" required)
+                .mb-3
+                  label(for="introduction" class="form-label") Introduction
+                  input(type="text" class="form-control" id="introduction" name="introduction" required)
                 .mb-3
                   label(for="content" class="form-label") Content
                   textarea(class="form-control" id="content" name="content" rows="4" )
                 .mb-3
                   label(for="urlThumnail" class="form-label") URL Thumbnail
-                  input(type="text" class="form-control" id="urlThumnail" name="urlThumnail" required)
+                  input(type="file" class="form-control" id="urlThumnail" name="urlThumnail" required)
                 .mb-3
                   label(for="author" class="form-label") Author
                   input(type="text" class="form-control" id="author" name="author" required)
                 .mb-3
-                  button(type="submit" class="btn btn-success") Create Post
+                  label(for="tags" class="form-label") Tags 
+                    .hstack.gap-3
+                      button.btn.btn-outline-danger(type='button' onclick=`resetYourTag()`) 
+                        svg.bi.bi-trash3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                          path(d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5')
+                      #listTag.form-control
+                        span(class="badge text-bg-secondary my-tag")  Blog
+                  .hstack.gap-3
+                    button.btn.btn-secondary(type='button'  onclick=`addYourTag()`) 
+                      svg.bi.bi-plus-lg(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                        path(fill-rule='evenodd' d='M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2')
+                    input.form-control.me-auto(type='text' id="tags" onkeydown=`handleKeyPress(event)` placeholder='Add your tag here...' aria-label='Add your item here...')
+                    //thẻ ẩn để truyền dữ liệu form
+                    input.form-control.me-auto(type='hidden' id="tagsData" name="tagsData" placeholder='Add your item here...' aria-label='Add your item here...' required)
+                .mb-3
+                  button(type="submit" id="createPostAction" class="btn btn-success") Create Post
             .modal-footer
               button(type="button", class="btn btn-secondary", data-bs-dismiss="modal") Close
 
 // Script để xác nhận việc xoá
 script.
-  document.addEventListener('DOMContentLoaded', function () {
-    ClassicEditor
-      .create(document.querySelector('#content'), {
-        // Các tùy chọn của CKEditor
-      })
-      .catch(error => {
-        console.error(error);
-      })
+  //xử lý tag
+  const Tags = [];
+  function addYourTag() {
+    console.log("add tag ...");
+    const data = document.getElementById("tags").value
+    if (data != ""){
+      Tags.push(data)
+      console.log(Tags)
+      //lấy thẻ bao của các thẻ span ứng với tag
+      const lisTags = document.getElementById("listTag")
+      //tạo thẻ span mới
+      const spanTag = document.createElement('span')
+      spanTag.className = "badge text-bg-secondary my-tag"
+      spanTag.textContent  = document.getElementById("tags").value //gán giá trị tag bằng thẻ mới nhập vào
+      lisTags.appendChild(spanTag) //thêm vào cha
+      document.getElementById("tags").value = null
+    }
+    //gán giá trị cuối cùng của mảng tag vào input để chuẩn bị submit form
+    document.getElementById("tagsData").value = Tags
+    console.log(document.getElementById("tagsData").value)
+  }
+  function resetYourTag() {
+    console.log("reset ...")
+    const listTags = document.getElementById("listTag");
+    //- console.log(listTags)
+    if(listTags.lastChild != null){
+      Tags.pop()
+      listTags.removeChild(listTags.lastChild)
+    }
+    console.log(Tags)
+    document.getElementById("tagsData").value = Tags
+    console.log(document.getElementById("tagsData").value)
+  }
+  function handleKeyPress(event) {
+      // Kiểm tra nếu phím được nhấn là "Enter"
+      if (event.key === "Enter") {
+          // Thực hiện xử lý tại đây
+          console.log("Enter key pressed");
+          addYourTag()
+          // Ngăn chặn hành động mặc định của phím "Enter" trong form
+          event.preventDefault();
+      }
+  }
+
+  //xử lý submit create_post
+  document.getElementById("createPostAction").addEventListener("submit",function(event){
+    // Ngăn chặn gửi form để bạn có thể xem giá trị đã được đặt trước khi gửi
+      vent.preventDefault();
+  })
+
+  //xử lý Ckeditor
+  document.addEventListener('DOMContentLoaded', function() {
+      ClassicEditor
+          .create(document.querySelector('#content'), {
+              // Các tùy chọn của CKEditor
+          })
+          .catch(error => {
+              console.error(error);
+          });
   });
-  function confirmAndDelete(postId,postTitle) {
-    var result = confirm(`bạn có chắc chắn muốn xoá post :"${postTitle}" thao tác này sẽ không thể khôi phục`);
-    if (result) {
-      fetch(`/post/delete/${postId}`, {
-        method: 'DELETE',
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log("Delete successful:", data);
-          // Xử lý sau khi xóa thành công (nếu cần)
-          //- alert("Đã xoá thành công!");
-          window.location.href = `/post/manager`;
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          // Xử lý lỗi (nếu cần)
-        });
-    }}
+  
+  // Xử lý xoá bài đăng
+  function confirmAndDelete(postId, postTitle) {
+      var result = confirm(`Bạn có chắc chắn muốn xoá post: "${postTitle}"? Thao tác này sẽ không thể khôi phục.`);
+      if (result) {
+          fetch(`/post/delete/${postId}`, {
+                  method: 'DELETE',
+              })
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error(`HTTP error! Status: ${response.status}`);
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                  console.log("Delete successful:", data);
+                  // Xử lý sau khi xóa thành công (nếu cần)
+                  //- alert("Đã xoá thành công!");
+                  window.location.href = `/post/manager`;
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  // Xử lý lỗi (nếu cần)
+              });
+      }
+  }
+
+  // xử lý tính năng chỉnh sửa bài đăng
   function editPost(postId) {
       fetch(`/post/detail/${postId}`, {
-        method: 'get',
-      })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log("data :", data);
-          // Xử lý sau khi xóa thành công (nếu cần)
-          //- alert("Đã xoá thành công!");
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          // Xử lý lỗi (nếu cần)
-        });
+              method: 'get',
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log("data:", data);
+              // Xử lý sau khi xóa thành công (nếu cần)
+              //- alert("Đã xoá thành công!");
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              // Xử lý lỗi (nếu cần)
+          });
   }
+
+  
+
+
+  

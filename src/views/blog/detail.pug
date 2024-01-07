@@ -73,9 +73,9 @@ head
         .title
           h2
             a(href='#') #{PostDetail.title}
-          p lời dẫn - chưa có thuộc tính trong DB
+          p #{PostDetail.introduction}
         .meta
-          time.published(datetime='2015-11-01') #{PostDetail.createdAt}
+          time.published(datetime='2015-11-01') #{PostDetail.createDate}
           a.author(href='#')
             span.name #{PostDetail.author}
             img(src='images/avatar.jpg' alt='')

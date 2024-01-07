@@ -14,7 +14,20 @@ const path = require('path');
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'src', 'views'));
 
+//setup static file
+app.use("/static", express.static(path.join(__dirname, 'src', 'views')))
+app.use("/static", express.static(path.join(__dirname, 'src', 'resource')))
+
 // public API
+const { UpdateMiddlerWare } = require('./src/middleware/upload')
+app.post("/upload/demo", UpdateMiddlerWare, (req, res) => {
+    res.json({ mess: "okok", info: req.body })
+        // console.log(req)
+        // console.log("update okok")
+})
+app.get("/upload/demo", (req, res) => {
+    res.render('demo')
+})
 
 // blogPost API
 const postRouter = require('./src/routers/blogPost')
