@@ -1,0 +1,97 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Regiter
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous')
+  script(src="/static/js/create_user.js") 
+.container.mb-3
+  .row
+    h1 Create New User
+    hr
+  form(onsubmit=`handleSubmit(event)` enctype='multipart/form-data')
+    .row
+      //thông tin cơ bản 
+      .col 
+        .form-group
+          label(for='username') Username:
+          input#username.form-control(type='text' name='username' required='')
+        .form-group
+          label(for='password') Password:
+          input#password.form-control(type='password' name='password' required='')
+        hr
+        .form-group
+          label(for='displayname') Display Name:
+          input#displayname.form-control(type='text' name='displayname' required='')
+        .form-group
+          label(for='nickname') Nickname:
+          input#nickname.form-control(type='text' name='nickname' required='')
+        .form-group
+          label(for='age') Age:
+          input#age.form-control(type='number' name='age' required='')
+        .form-group
+          label(for='email') Email:
+          input#email.form-control(type='email' name='email' required='')
+      
+      // thêm thông tin về công việc và các tk mạng xã hội
+      .col 
+        label(for='favoriteJob') Favorite Job (array):
+        //- template add job
+        .row.input-group.mb-3(style='visibility: hidden; position: absolute;' id="templateAddJob")
+          .col-9
+            input.form-control(type='text' name='favoriteJob' onkeydown=`addJobWithEnter(event)`)
+          .col-3
+            button.btn.bnt-light(type='button'  )
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+              </svg>
+        .form-group(id="jobInputArea")
+          //- first job input
+          .row.input-group.mb-3
+            .col-9
+              input.form-control.jobinput(type='text' name='inputJob' onkeydown=`addJobWithEnter(event)` id="inputJob" required='')
+            .col-3
+              button.btn(type='button' onclick=`addJob()`)
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+        //- temlplte
+        .input-group.mb-4(style='visibility: hidden; position: absolute;' id="templateAddSocial")
+          select.form-select(aria-label='Default select example')
+            option(selected='') Select social network
+            option(value='1') Facebook
+            option(value='2') Instagram
+            option(value='3') Tiktok
+          input.form-control(type='text' aria-label='Text input with dropdown button')
+          button.btn(type='button' )
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+              </svg>
+        .form-group(id="socialArea")
+          h5 Social network
+          //- first social_network
+          .input-group.mb-4(id="socialNetwork")
+            select.form-select(aria-label='Default select example' name='social')
+              option(selected='') Select social network
+              option(value='1') Facebook
+              option(value='2') Instagram
+              option(value='3') Tiktok
+            input.form-control(type='text' aria-label='Text input with dropdown button' name='link')
+            button.btn(type='button' onclick=`addSocial()`)
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                </svg>
+
+        //- avatar-about
+        .form-group
+          label(for='avatar') Profile Picture Link:
+          input#avatar.form-control(type='file' name='avatar')
+        .form-group
+          label(for='aboutme') About Me:
+          textarea#aboutme.form-control(name='aboutme')
+    br
+    button.btn.btn-primary(type='submit' value="Submit" ) Create User
+
+script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js' integrity='sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL' crossorigin='anonymous')

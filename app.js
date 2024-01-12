@@ -5,9 +5,22 @@ const port = process.env.SERVER_PORT
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// add middleware
+const { checkLogin } = require('./src/middleware/auth')
 
 //connect DB
 const db = require('./src/config/connect_db')
+
+// set up middleware cookie, session 
+const cookieParser = require('cookie-parser')
+const session = require('express-session')
+app.use(cookieParser())
+app.use(session({
+    secret: "tranduc",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}))
 
 // set view engine
 const path = require('path');

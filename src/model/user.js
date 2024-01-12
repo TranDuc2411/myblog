@@ -30,11 +30,13 @@ const userSchema = new mongoose.Schema({
         default: [],
     },
     social_network: {
-        social: String,
-        link: String,
-        displaylink: String,
+        type: [{
+            social: String,
+            link: String,
+        }],
+        default: []
     },
-    profilePictureLink: {
+    avatar: {
         type: String,
         default: null
     },

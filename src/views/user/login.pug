@@ -1,0 +1,26 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title Login
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN' crossorigin='anonymous')
+  
+.container
+  .row
+    .col.align-self-center  
+      //- <img class="img-thumbnail" src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/358142089_3482952055319155_957095269727703224_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=3zIEJNLAHuUAX9TzmI2&_nc_ht=scontent.fhan20-1.fna&oh=00_AfCOCaV7kYrcVqzbyXxc9kWsH0n8reATDzd7FrEwCgRXFQ&oe=65A525E6" class="img-fluid" alt="...">
+      h1.text-center login
+      form(method='post' action='/user/login')
+        .mb-3
+          label.form-label(for='exampleInputEmail1') Username
+          input#exampleInputEmail1.form-control(type='text' name='username')
+        .mb-3
+          label.form-label(for='exampleInputPassword1') Password
+          input#exampleInputPassword1.form-control(type='password' name='password')
+        button.btn.btn-primary(type='submit') Submit
+    .col  
+      h1.text-center logo
+      //- <img class="img-thumbnail" src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/358142089_3482952055319155_957095269727703224_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=3zIEJNLAHuUAX9TzmI2&_nc_ht=scontent.fhan20-1.fna&oh=00_AfCOCaV7kYrcVqzbyXxc9kWsH0n8reATDzd7FrEwCgRXFQ&oe=65A525E6" class="img-fluid" alt="...">
+script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js' integrity='sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL' crossorigin='anonymous')
