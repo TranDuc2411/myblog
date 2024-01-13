@@ -20,7 +20,7 @@ exports.UpdateMiddlerWare = (parameters) => {
                 console.log("Error uploading file: ", err);
                 return res.status(500).json({ status: 500, mess: "Error uploading file." });
             }
-            console.log(req.body)
+            // console.log(req.body)
 
             // Kiểm tra nếu không có file được tải lên
             if (!req.file) {

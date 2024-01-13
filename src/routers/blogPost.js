@@ -14,5 +14,6 @@ router.delete("/delete/:id", checkLogin, postController.deletePost);
 // API public
 router.get("/", postController.getAllPosts);
 router.get("/detail/:id", postController.getDetailPost);
+// router.get("/:month/:id", postController.getDetailPost);
 
 module.exports = router;

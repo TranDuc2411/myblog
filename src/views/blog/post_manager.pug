@@ -74,6 +74,12 @@ html(lang="en")
                   label(for="author" class="form-label") Author
                   input(type="text" class="form-control" id="author" name="author" required)
                 .mb-3
+                  .form-check
+                    input#flexCheckDefault.form-check-input(type='checkbox' value="true"  name='isRecoment')
+                    label.form-check-label(for='isRecoment')
+                      | Rcoment Post
+
+                .mb-3
                   label(for="tags" class="form-label") Tags 
                     .hstack.gap-3
                       button.btn.btn-outline-danger(type='button' onclick=`resetYourTag()`) 

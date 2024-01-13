@@ -3,23 +3,6 @@ const User = require('../model/user')
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const { json } = require('express');
-const userDemo = {
-    username: "tranduc",
-    password: "hashed_password_123",
-    displayname: "John Doe",
-    nickname: "johnd",
-    age: 30,
-    email: "john.doe@example.com",
-    favoriteJob: ["Web Developer", "Graphic Designer"],
-    social_network: {
-        social: "Twitter",
-        link: "https://twitter.com/johnd",
-        displaylink: "@johnd",
-    },
-    profilePictureLink: "https://example.com/john_doe_profile.jpg",
-    aboutme: "Passionate about web development and design.",
-}
-
 // router.post("/regiter", usercontroller.createUser)
 exports.createUser = async(req, res) => {
     if (req.method === "GET") {

@@ -43,6 +43,10 @@ const postSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isRecoment: {
+        type: Boolean,
+        default: false
+    },
     //ngày tạo bài đăng
     createdAt: {
         type: Date,

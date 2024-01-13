@@ -40,6 +40,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null
     },
+    isRecoment: {
+        type: Boolean,
+        default: false
+    },
     aboutme: {
         type: String,
         default: null
