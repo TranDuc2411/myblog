@@ -5,6 +5,10 @@ const port = process.env.SERVER_PORT
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
+// confi cors
+const cors = require('cors');
+app.use(cors());
+
 // add middleware
 const { checkLogin } = require('./src/middleware/auth')
 

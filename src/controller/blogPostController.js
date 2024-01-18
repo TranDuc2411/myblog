@@ -15,18 +15,30 @@ exports.getAllPosts = async(req, res) => {
     try {
         // Info 
         const userInfo = await user.findOne({ email: "tranngocminhduc2411@gmail.com" })
-        const infoView = new UserDTO(
-                userInfo.displayname,
-                userInfo.nickname,
+        if (userInfo != null) {
+            var infoView = new UserDTO(
+                userInfo.displayname || "Trần Ngọc Minh Đức",
+                userInfo.nickname || "01tranduc",
                 "24/11/2001",
-                userInfo.email,
-                userInfo.favoriteJob,
-                userInfo.social_network,
-                userInfo.avatar,
-                userInfo.aboutme
+                userInfo.email || "tranngocminhduc2411@gmail.com",
+                userInfo.favoriteJob || "freelancer",
+                userInfo.social_network || "nothings",
+                userInfo.avatar || "",
+                userInfo.aboutme || "something"
             )
-            // console.log(infoView)
-
+        } else {
+            infoView = new UserDTO(
+                "Trần Ngọc Minh Đức",
+                "01tranduc ",
+                "24/11/2001",
+                "tranngocminhduc2411@gmail.com",
+                "freelancer",
+                "nothings",
+                "",
+                "something- data demo"
+            )
+        }
+        // console.log(infoView)
         //new post
         const Posts = await blogPost.find().limit(6).sort({ createdAt: -1 })
         const newPost = []
@@ -63,7 +75,7 @@ exports.getAllPosts = async(req, res) => {
             )
             recomentPostExport.push(recomentPost)
         }
-        console.log(recomentPostExport)
+        // console.log(recomentPostExport)
 
         res.render("blog/home", { infoView, Posts, newPostCenter, newPostSide, recomentPostExport })
     } catch (error) {

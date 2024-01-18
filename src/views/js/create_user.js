@@ -126,7 +126,12 @@ function handleSubmit(event) {
             method: 'POST',
             body: formData,
         })
-        .then(response => response.json())
-        .then(result => console.log(result))
+        .then(response => {
+            console.log(response)
+            if (response.status == 200) {
+                alert("Bạn đã đăng ký thành công !")
+                window.location.href = "login"
+            }
+        })
         .catch(error => console.error('Error:', error));
 }
