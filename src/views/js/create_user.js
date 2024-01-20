@@ -109,6 +109,7 @@ function handleSubmit(event) {
     formData.append("email", document.getElementById("email").value);
     formData.append("favoriteJob", JSON.stringify(favoriteJobs));
     formData.append("aboutme", document.getElementById("aboutme").value);
+    formData.append("admincode", document.getElementById("admincode").value);
     formData.append("social_network", JSON.stringify(socialListData));
 
     // Lấy file từ input có id là 'avatar'
@@ -131,6 +132,8 @@ function handleSubmit(event) {
             if (response.status == 200) {
                 alert("Bạn đã đăng ký thành công !")
                 window.location.href = "login"
+            } else if (response.status == 500) {
+                alert("tạo người dùng mới không thành công !")
             }
         })
         .catch(error => console.error('Error:', error));

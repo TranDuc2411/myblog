@@ -10,9 +10,9 @@ exports.createUser = async(req, res) => {
         res.render("user/create_user");
     } else if (req.method === "POST") {
         //check admin code 
-        var checkAdminCode = Boolean.apply(req.AdminCode == process.env.ADMINCODE)
-            // var checkAdminCode = true
+        var checkAdminCode = (req.body.admincode === process.env.ADMIN_CODE)
         if (checkAdminCode) {
+            s
             const passwordInput = req.body.password;
             // Hash the password with PBKDF2 and the generated salt
             const hashedPassword = CryptoJS.SHA256(passwordInput).toString()
@@ -35,7 +35,7 @@ exports.createUser = async(req, res) => {
                 console.log(error);
             }
         } else {
-            res.status(200).json(({ status: 200, mess: "You dont have Admin_code, You do not have admin code, please contact Tran Ngoc Minh Duc for assistance" }))
+            res.status(500).json(({ status: 500, mess: "You dont have Admin_code, You do not have admin code, please contact Tran Ngoc Minh Duc for assistance" }))
         }
     }
 };
@@ -77,17 +77,15 @@ exports.login = async(req, res) => {
 };
 
 
-// router.post("/logout", usercontroller.logOut)
-exports.logOut = (req, res) => {
-    console.log("logout");
-}
 
 // router.get("/info", usercontroller.getInfo)
-exports.getInfo = (req, res) => {
-    console.log("getInfo");
-}
-
-// router.post("/editinfo", usercontroller.editInfo)
-exports.editInfo = (req, res) => {
-    console.log("editInfo");
+exports.updateInfo = async(req, res) => {
+    if (req.method === "GET") {
+        console.log("update info ...")
+            // console.log(req.session.user)
+        const userInfo = req.session.user
+        res.render("user/update_info", { userInfo })
+    } else if (req.method === "PUT") {
+        console.log("update ... action")
+    }
 }

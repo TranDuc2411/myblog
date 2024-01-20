@@ -3,20 +3,16 @@ version: "3"
 services:
   app:
       build: .
-      working_dir: /home/node/app
       environment:
         - NODE_ENV=production
       env_file:
       - .env
-      volumes:
-        - ./:/home/node/app
       ports:
-        - "7777:7777"
+        - $SERVER_PORT_EXPORT:$SERVER_PORT_EXPORT
       networks:
         - conectDB
       depends_on:
         - db
-
   db:
     image: mongo
     restart: always
@@ -24,13 +20,16 @@ services:
       - "27018:27017"
     volumes:
       - mongodb_data:/data/db
+      - /data:/data/db
     networks:
       - conectDB
     env_file:
       - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_ROOT_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_ROOT_PASSWORD
 networks:
   conectDB:
     driver: bridge
-
 volumes:
   mongodb_data:

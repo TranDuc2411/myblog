@@ -12,8 +12,11 @@ router.get("/editpost/:id", checkLogin, postController.editPost);
 router.delete("/delete/:id", checkLogin, postController.deletePost);
 
 // API public
-router.get("/", postController.getAllPosts);
+router.get("/", postController.getAllpost);
+router.get("/bytag", postController.filterPostByTag);
+router.get("/month/:month", postController.filterPostinSameMonth);
+router.get("/date/:date", postController.filterPostinSameDay);
 router.get("/detail/:id", postController.getDetailPost);
-// router.get("/:month/:id", postController.getDetailPost);
+router.get("/:month/:id", postController.getDetailPost);
 
 module.exports = router;

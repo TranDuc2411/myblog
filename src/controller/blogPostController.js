@@ -10,8 +10,8 @@ const formatDate = (date) => {
     return date.toLocaleDateString("en-US", options);
 };
 
-// router.get("/", postController.getAllPosts);
-exports.getAllPosts = async(req, res) => {
+// router.get("/", postController.getAllpost);
+exports.getAllpost = async(req, res) => {
     try {
         // Info 
         const userInfo = await user.findOne({ email: "tranngocminhduc2411@gmail.com" })
@@ -40,9 +40,9 @@ exports.getAllPosts = async(req, res) => {
         }
         // console.log(infoView)
         //new post
-        const Posts = await blogPost.find().limit(6).sort({ createdAt: -1 })
+        const post = await blogPost.find().limit(6).sort({ createdAt: -1 })
         const newPost = []
-        for (post of Posts) {
+        for (post of post) {
             const postTmp = new PostDTO(
                 post._id,
                 post.title,
@@ -56,8 +56,8 @@ exports.getAllPosts = async(req, res) => {
             newPost.push(postTmp)
         }
         const newPostCenter = newPost.slice(0, 2)
-        const newPostSide = newPost.slice(2)
-            // console.log(newPostCenter, newPostSide)
+        const newpostide = newPost.slice(2)
+            // console.log(newPostCenter, newpostide)
 
         // recoment Post
         const listRecomentPost = await blogPost.find({ isRecoment: true }).limit(5).sort({ createdAt: -1 })
@@ -76,8 +76,9 @@ exports.getAllPosts = async(req, res) => {
             recomentPostExport.push(recomentPost)
         }
         // console.log(recomentPostExport)
+        const newPostSide = {}
 
-        res.render("blog/home", { infoView, Posts, newPostCenter, newPostSide, recomentPostExport })
+        res.render("blog/home", { infoView, post, newPostCenter, newpostide, recomentPostExport, newPostSide })
     } catch (error) {
         console.log('error : ', error)
         res.status(500).json({ error: { code: 500, message: "error server !!!" } })
@@ -184,4 +185,31 @@ exports.deletePost = async(req, res) => {
     } catch (error) {
         res.status(500).json({ error: { code: 500, mess: "server error !!" } })
     }
+}
+
+//by Tag
+// GET /byTags?tags=tag1=tag2=tag3
+exports.filterPostByTag = async(req, res) => {
+    try {
+        const tags = req.query.tags; // Lấy danh sách tags từ query parameters
+
+        // Chuyển đổi chuỗi tags thành mảng
+        const tagsArray = tags ? tags.split('=') : [];
+
+        // Lọc bài đăng có ít nhất một trong những tag trong danh sách và không bị xoá
+        const post = await blogPost.find({ tags: { $in: tagsArray }, isDelete: false }).sort({ createdAt: -1 });
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({ error: 'Server error' });
+    }
+}
+
+// inSameMonth
+exports.filterPostinSameMonth = async(req, res) => {
+
+}
+
+// inSameDay
+exports.filterPostinSameDay = async(req, res) => {
+
 }
