@@ -48,10 +48,10 @@ head
               </svg>
         .form-group(id="jobInputArea")
           //- first job input
-          each job in userInfo.favoriteJob
+          each job in favoriteJob
             .row.input-group.mb-3
               .col-9
-                input.form-control.jobinput(type='text' name='inputJob' onkeydown=`addJobWithEnter(event)` id=`inputJob_${job}` required='' value=userInfo.favoriteJob[0])
+                input.form-control.jobinput(type='text' name='inputJob' onkeydown=`addJobWithEnter(event)` id=`inputJob_${job}` required='' value=job)
               .col-3
                 button.btn(type='button' onclick=`addJob('${job}')`)
                   svg(xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16")
@@ -72,25 +72,27 @@ head
         .form-group(id="socialArea")
           h5 Social network
           //- first social_network
-          .input-group.mb-4(id="socialNetwork")
-            select.form-select(aria-label='Default select example' name='social')
-              option(selected='') Select social network
-              option(value='1') Facebook
-              option(value='2') Instagram
-              option(value='3') Tiktok
-            input.form-control(type='text' aria-label='Text input with dropdown button' name='link')
-            button.btn(type='button' onclick=`addSocial()`)
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                </svg>
+          each network in social_network
+            .input-group.mb-4(id="socialNetwork")
+              select.form-select(aria-label='Default select example' name='social' )
+                option(selected) Select social network
+                option#facebookLink(value='1' load=`setSlected(${network.social})`) Facebook
+                option#instagramLink(value='2') Instagram
+                option#tiktokLink(value='3') Tiktok
+              input.form-control(type='text' aria-label='Text input with dropdown button' name='link' value=network.link)
+              button.btn(type='button' onclick=`addSocial()`)
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+                  </svg>
 
         //- avatar-about
         .form-group
           label(for='avatar') Profile Picture Link:
           input#avatar.form-control(type='file' name='avatar')
+          img(src=`${userInfo.avatar}` style="display: block; margin-left: -0.25em; width: 15em; height: 15em;  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); object-fit: cover;", alt="", srcset="")
         .form-group
           label(for='aboutme') About Me:
-          textarea#aboutme.form-control(name='aboutme')
+          textarea#aboutme.form-control(name='aboutme') #{userInfo.aboutme}
         .form-group
           label(for='admincode') Admin code:
           input#admincode.form-control( type='password' name='admincode')
@@ -100,3 +102,4 @@ head
 script(src='https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js' integrity='sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js' integrity='sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+' crossorigin='anonymous')
 script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js' integrity='sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL' crossorigin='anonymous')
+script(src="/static/js/update_info.js") 

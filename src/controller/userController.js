@@ -12,30 +12,39 @@ exports.createUser = async(req, res) => {
         //check admin code 
         var checkAdminCode = (req.body.admincode === process.env.ADMIN_CODE)
         if (checkAdminCode) {
-            s
-            const passwordInput = req.body.password;
-            // Hash the password with PBKDF2 and the generated salt
-            const hashedPassword = CryptoJS.SHA256(passwordInput).toString()
-
-            req.body.password = hashedPassword;
-            // req.body.salt = salt.toString();
-
-            req.body.social_network = JSON.parse(req.body.social_network);
-            const newUser = new User({
-                ...req.body,
-            });
-            // console.log("createUsser == controller == : ", newUser)
             try {
-                newUser.save();
-                // res.status(200).json(({ status: 200, mess: "created ..." }));
-                res.redirect("/post/manager");
-                ("user/login")
+                const existingUser = await User.findOne({ $or: [{ email: req.body.email }, { username: req.body.username }] });
+                if (!existingUser) {
+                    const passwordInput = req.body.password;
+                    // Hash the password with PBKDF2 and the generated salt
+                    const hashedPassword = CryptoJS.SHA256(passwordInput).toString()
+
+                    req.body.password = hashedPassword;
+                    // req.body.salt = salt.toString();
+
+                    req.body.social_network = JSON.parse(req.body.social_network);
+                    req.body.favoriteJob = JSON.parse(req.body.favoriteJob);
+                    const newUser = new User({
+                        ...req.body,
+                    });
+
+                    await newUser.save();
+                    res.redirect("/post/manager");
+                } else {
+                    if (existingUser.email === req.body.email) {
+                        res.status(204).json({ status: 204, mess: "Email đã được sử dụng trước đó!" });
+                    } else {
+                        res.status(204).json({ status: 204, mess: "Username đã được sử dụng trước đó!" });
+                    }
+                }
             } catch (error) {
-                res.status(500).json({ status: 500, mess: "server error" })
-                console.log(error);
+                console.error(error);
+                res.status(500).json({ status: 500, mess: "Lỗi server" });
             }
+
+
         } else {
-            res.status(500).json(({ status: 500, mess: "You dont have Admin_code, You do not have admin code, please contact Tran Ngoc Minh Duc for assistance" }))
+            res.status(400).json(({ status: 400, mess: "You dont have Admin_code, You do not have admin code, please contact Tran Ngoc Minh Duc for assistance" }))
         }
     }
 };
@@ -84,7 +93,10 @@ exports.updateInfo = async(req, res) => {
         console.log("update info ...")
             // console.log(req.session.user)
         const userInfo = req.session.user
-        res.render("user/update_info", { userInfo })
+        console.log(req.session.user)
+        const favoriteJob = userInfo.favoriteJob
+        const social_network = userInfo.social_network
+        res.render("user/update_info", { userInfo, favoriteJob, social_network })
     } else if (req.method === "PUT") {
         console.log("update ... action")
     }

@@ -38,6 +38,12 @@ const postSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
+    month: {
+        type: Number,
+        default: () => {
+            return new Date().getMonth() + 1;
+        }
+    },
     //trạng thái xoá hay chưa
     isDelete: {
         type: Boolean,

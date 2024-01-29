@@ -1,9 +1,11 @@
 const express = require('express');
-const https = require('https');
+const http = require('http'); // Sử dụng mô-đun http thay vì https
 const fs = require('fs');
 require('dotenv').config();
 const app = express();
-const port = process.env.SERVER_PORT || 443;
+const port = process.env.SERVER_PORT || 80; // Sử dụng cổng 80 cho HTTP
+
+// Middleware để chuyển hướng từ HTTPS sang HTTP
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -49,12 +51,8 @@ app.use('/post', postRouter);
 const userRouter = require('./src/routers/user');
 app.use('/user', userRouter);
 
-const options = {
-    key: fs.readFileSync('./key.key', 'utf8'),
-    cert: fs.readFileSync('./Certificate.crt', 'utf8'),
-};
-
-const server = https.createServer(options, app);
+// Sử dụng mô-đun http thay vì https
+const server = http.createServer(app);
 
 server.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

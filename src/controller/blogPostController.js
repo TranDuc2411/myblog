@@ -40,9 +40,9 @@ exports.getAllpost = async(req, res) => {
         }
         // console.log(infoView)
         //new post
-        const post = await blogPost.find().limit(6).sort({ createdAt: -1 })
+        const listPost = await blogPost.find().limit(6).sort({ createdAt: -1 })
         const newPost = []
-        for (post of post) {
+        for (post of listPost) {
             const postTmp = new PostDTO(
                 post._id,
                 post.title,
@@ -78,7 +78,7 @@ exports.getAllpost = async(req, res) => {
         // console.log(recomentPostExport)
         const newPostSide = {}
 
-        res.render("blog/home", { infoView, post, newPostCenter, newpostide, recomentPostExport, newPostSide })
+        res.render("blog/home", { infoView, listRecomentPost, newPostCenter, newpostide, recomentPostExport, newPostSide })
     } catch (error) {
         console.log('error : ', error)
         res.status(500).json({ error: { code: 500, message: "error server !!!" } })
@@ -92,7 +92,16 @@ exports.getAllpost = async(req, res) => {
 exports.postManager = async(req, res) => {
     try {
         const Posts = await blogPost.find().skip().limit()
-        res.render('blog/post_manager', { Posts })
+        const Info = {
+            username: req.session.user.username,
+            userimgURL: req.session.user.avatar,
+            displayname: req.session.user.displayname,
+            email: req.session.user.email,
+            aboutme: req.session.user.aboutme,
+
+        }
+        console.log(Info)
+        res.render('blog/post_manager', { Posts, Info })
     } catch (error) {
         res.status(500).json({ error: { code: 500, message: "error server !!" } })
     }
@@ -206,7 +215,77 @@ exports.filterPostByTag = async(req, res) => {
 
 // inSameMonth
 exports.filterPostinSameMonth = async(req, res) => {
+    try {
+        // Info 
+        const userInfo = await user.findOne({ email: "tranngocminhduc2411@gmail.com" })
+        if (userInfo != null) {
+            var infoView = new UserDTO(
+                userInfo.displayname || "Trần Ngọc Minh Đức",
+                userInfo.nickname || "01tranduc",
+                "24/11/2001",
+                userInfo.email || "tranngocminhduc2411@gmail.com",
+                userInfo.favoriteJob || "freelancer",
+                userInfo.social_network || "nothings",
+                userInfo.avatar || "",
+                userInfo.aboutme || "something"
+            )
+        } else {
+            infoView = new UserDTO(
+                "Trần Ngọc Minh Đức",
+                "01tranduc ",
+                "24/11/2001",
+                "tranngocminhduc2411@gmail.com",
+                "freelancer",
+                "nothings",
+                "",
+                "something- data demo"
+            )
+        }
+        // console.log(infoView)
+        //new post
+        const listPost = await blogPost.find({ month: req.params.month }).limit(6).sort({ createdAt: -1 })
+        const newPost = []
+        for (post of listPost) {
+            const postTmp = new PostDTO(
+                post._id,
+                post.title,
+                post.introduction,
+                post.content,
+                post.urlThumnail,
+                "tranngocminhduc",
+                post.tags,
+                formatDate(post.createdAt)
+            )
+            newPost.push(postTmp)
+        }
+        const newPostCenter = newPost.slice(0, 2)
+        const newpostide = newPost.slice(2)
+            // console.log(newPostCenter, newpostide)
 
+        // recoment Post
+        const listRecomentPost = await blogPost.find({ isRecoment: true }).limit(5).sort({ createdAt: -1 })
+        const recomentPostExport = []
+        for (recomentPost of listRecomentPost) {
+            const recomentPostTmp = new PostDTO(
+                recomentPost._id,
+                recomentPost.title,
+                recomentPost.introduction,
+                recomentPost.content,
+                recomentPost.urlThumnail,
+                "tranngocminhduc",
+                recomentPost.tags,
+                formatDate(recomentPost.createdAt)
+            )
+            recomentPostExport.push(recomentPost)
+        }
+        // console.log(recomentPostExport)
+        const newPostSide = {}
+
+        res.render("blog/month", { infoView, listRecomentPost, newPostCenter, newpostide, recomentPostExport, newPostSide })
+    } catch (error) {
+        console.log('error : ', error)
+        res.status(500).json({ error: { code: 500, message: "error server !!!" } })
+    }
 }
 
 // inSameDay

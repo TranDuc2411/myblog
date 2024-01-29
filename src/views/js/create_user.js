@@ -129,12 +129,32 @@ function handleSubmit(event) {
         })
         .then(response => {
             console.log(response)
+            console.log(response.JSON)
             if (response.status == 200) {
-                alert("Bạn đã đăng ký thành công !")
+                appendAlert("Tạo người dùng mới thành công !", "success")
                 window.location.href = "login"
+            } else if (response.status == 204) {
+                // alert(`tạo người dùng mới không thành công : "username hoặc email đã tồn tại" `)
+                appendAlert("Tạo người dùng mới không thành công : username hoặc email đã tồn tại !", "warning")
             } else if (response.status == 500) {
-                alert("tạo người dùng mới không thành công !")
+                appendAlert("Tạo người dùng mới không thành công : lỗi 500 server !", "danger")
+            } else if (response.status == 400) {
+                appendAlert("Tạo người dùng mới không thành công : Thiếu Admincode hoặc Admincode không hợp lệ !", "warning")
             }
         })
         .catch(error => console.error('Error:', error));
+}
+
+// thông báo phản hồi
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+    ].join('')
+
+    alertPlaceholder.append(wrapper)
 }

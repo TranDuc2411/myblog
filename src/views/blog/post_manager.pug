@@ -5,39 +5,29 @@ html(lang="en")
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title List Post 
-    script(src='./js/post_manager.js')
+    
     script(src='https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js')
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN", crossorigin="anonymous")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js", integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL", crossorigin="anonymous")
   body 
-    .container-fluid
-      h1 blog manager
-      table.table
-        thead
-          tr
-            th(scope='col') Stt
-            th(scope='col') Title
-            th(scope='col') CreateAt
-            th(scope='col') Author 
-            th(scope='col') Action 
-        tbody.table-group-divider
-          each post, index in Posts
-            tr
-              th(scope='row') #{index + 1}
-              td 
-                a(href=`/post/detail/${post._id}`) #{post.title}
-              td #{post.createdAt}
-              td #{post.author}
-              td 
-                a(class="btn" href=`/post/editpost/${post._id}` onclick=`editPost('${post._id}')`)
-                  svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                    path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
-                    path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
-                button(type="submit" class="btn" onclick=`confirmAndDelete('${post._id}','${post.title}')`)
-                  svg.bi.bi-trash3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
-                    path(d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5')
-
-    
+    .container
+      .row.align-items-center 
+        .col
+          h1 Chào mừng quay trở lại ! 
+      <div class="card text-center">
+        <div class="card-body">
+          <img src=#{Info.userimgURL} class="img-thumbnail" style ="wide:10em; height:10em; border-radius:50%" >
+          <h5 class="card-title">#{Info.username}</h5>
+          <h6 class="card-text">Display name : #{Info.displayname}</h6>
+          <h6 class="card-text">Email : #{Info.email}</h6>
+          <p class="card-text">About : #{Info.aboutme}</p>
+          <a href="/user/update" class="btn btn-primary">Chỉnh sửa thông tin cá nhân</a>
+        </div>
+      </div>
+      .nav
+        .nav-item
+          a.nav-link.active(href="/user/regiter") Thêm admin
+        
       //- Button to toggle create post form visibility
       .btn-group
         button(id="createPostButton" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createPostModal") New Post       
@@ -49,6 +39,47 @@ html(lang="en")
             <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
           </svg>
 
+      br
+      br
+
+
+      table.table
+        thead
+          tr
+            th(scope='col') Stt
+            th(scope='col') Title
+            th(scope='col') CreateAt
+            th(scope='col') introduction
+            th(scope='col') Thumb 
+            th(scope='col') Author 
+            th(scope='col') Action 
+        tbody.table-group-divider
+          each post, index in Posts
+            tr
+              th(scope='row') #{index + 1}
+              td 
+                a(href=`/post/detail/${post._id}`) #{post.title}
+              //- td(style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 150px;") #{post.createdAt}
+              td(style="word-wrap: break-word;overflow-wrap: break-word;text-overflow: ellipsis;max-width: 150px;") #{post.createdAt}
+              td(style="word-wrap: break-word;overflow-wrap: break-word;text-overflow: ellipsis;max-width: 600px;") " #{post.introduction} "
+              //- td(style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;") #{post.createdAt}
+              //- td(style="word-wrap: break-word; overflow-wrap: break-word; text-overflow: ellipsis; max-width: 600px;") #{post.introduction}
+
+              td 
+                img.img-thumbnail( src=`${post.urlThumnail}` style ="wide:5em; height:10em;")
+              td #{post.author}
+              td 
+                a(class="btn" href=`/post/editpost/${post._id}` onclick=`editPost('${post._id}')`)
+                  svg.bi.bi-pencil-square(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                    path(d='M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z')
+                    path(fill-rule='evenodd' d='M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z')
+                button(type="submit" class="btn" onclick=`confirmAndDelete('${post._id}','${post.title}')`)
+                  svg.bi.bi-trash3(xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' viewbox='0 0 16 16')
+                    path(d='M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5')
+
+    
+      
+
       // Create new post form using Modal
       .modal.fade#createPostModal(tabindex="-1", role="dialog", aria-labelledby="createPostModalLabel", aria-hidden="true")
         .modal-dialog.modal-xl
@@ -57,7 +88,7 @@ html(lang="en")
               h5#createPostModalLabel.modal-title Create New Post
               button(type="button", class="btn-close", data-bs-dismiss="modal", aria-label="Close")
             .modal-body
-              form(id="createPostForm" action="http://localhost:7777/post/create" method="post" enctype='multipart/form-data')
+              form(id="createPostForm" action="create" method="post" enctype='multipart/form-data')
                 .mb-3
                   label(for="title" class="form-label") Title
                   input(type="text" class="form-control" id="title" name="title" required)
@@ -99,116 +130,10 @@ html(lang="en")
             .modal-footer
               button(type="button", class="btn btn-secondary", data-bs-dismiss="modal") Close
 
-// Script để xác nhận việc xoá
-script.
-  //xử lý tag
-  const Tags = [];
-  function addYourTag() {
-    console.log("add tag ...");
-    const data = document.getElementById("tags").value
-    if (data != ""){
-      Tags.push(data)
-      console.log(Tags)
-      //lấy thẻ bao của các thẻ span ứng với tag
-      const lisTags = document.getElementById("listTag")
-      //tạo thẻ span mới
-      const spanTag = document.createElement('span')
-      spanTag.className = "badge text-bg-secondary my-tag"
-      spanTag.textContent  = document.getElementById("tags").value //gán giá trị tag bằng thẻ mới nhập vào
-      lisTags.appendChild(spanTag) //thêm vào cha
-      document.getElementById("tags").value = null
-    }
-    //gán giá trị cuối cùng của mảng tag vào input để chuẩn bị submit form
-    document.getElementById("tagsData").value = Tags
-    console.log(document.getElementById("tagsData").value)
-  }
-  function resetYourTag() {
-    console.log("reset ...")
-    const listTags = document.getElementById("listTag");
-    //- console.log(listTags)
-    if(listTags.lastChild != null){
-      Tags.pop()
-      listTags.removeChild(listTags.lastChild)
-    }
-    console.log(Tags)
-    document.getElementById("tagsData").value = Tags
-    console.log(document.getElementById("tagsData").value)
-  }
-  function handleKeyPress(event) {
-      // Kiểm tra nếu phím được nhấn là "Enter"
-      if (event.key === "Enter") {
-          // Thực hiện xử lý tại đây
-          console.log("Enter key pressed");
-          addYourTag()
-          // Ngăn chặn hành động mặc định của phím "Enter" trong form
-          event.preventDefault();
-      }
-  }
-
-  //xử lý submit create_post
-  document.getElementById("createPostAction").addEventListener("submit",function(event){
-    // Ngăn chặn gửi form để bạn có thể xem giá trị đã được đặt trước khi gửi
-      vent.preventDefault();
-  })
-
-  //xử lý Ckeditor
-  document.addEventListener('DOMContentLoaded', function() {
-      ClassicEditor
-          .create(document.querySelector('#content'), {
-              // Các tùy chọn của CKEditor
-          })
-          .catch(error => {
-              console.error(error);
-          });
-  });
+// thêm script sau khi khởi tạo các thành phần
+script(src='/static/blog/js/post_manager.js')
+//- script.
   
-  // Xử lý xoá bài đăng
-  function confirmAndDelete(postId, postTitle) {
-      var result = confirm(`Bạn có chắc chắn muốn xoá post: "${postTitle}"? Thao tác này sẽ không thể khôi phục.`);
-      if (result) {
-          fetch(`/post/delete/${postId}`, {
-                  method: 'DELETE',
-              })
-              .then(response => {
-                  if (!response.ok) {
-                      throw new Error(`HTTP error! Status: ${response.status}`);
-                  }
-                  return response.json();
-              })
-              .then(data => {
-                  console.log("Delete successful:", data);
-                  // Xử lý sau khi xóa thành công (nếu cần)
-                  //- alert("Đã xoá thành công!");
-                  window.location.href = `/post/manager`;
-              })
-              .catch(error => {
-                  console.error('Error:', error);
-                  // Xử lý lỗi (nếu cần)
-              });
-      }
-  }
-
-  // xử lý tính năng chỉnh sửa bài đăng
-  function editPost(postId) {
-      fetch(`/post/detail/${postId}`, {
-              method: 'get',
-          })
-          .then(response => {
-              if (!response.ok) {
-                  throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              return response.json();
-          })
-          .then(data => {
-              console.log("data:", data);
-              // Xử lý sau khi xóa thành công (nếu cần)
-              //- alert("Đã xoá thành công!");
-          })
-          .catch(error => {
-              console.error('Error:', error);
-              // Xử lý lỗi (nếu cần)
-          });
-  }
 
   
 

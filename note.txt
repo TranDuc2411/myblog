@@ -1,7 +1,0 @@
-Tính năng : 
-    - Đăng nhập (1 người sử dụng)
-    - Có CRUD bài đăng "POST"
-    - Có CRUD thông tin cá nhân
-
-todo : 
-    - login, logout
